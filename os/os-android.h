@@ -61,6 +61,8 @@
 #include <linux/shm.h>
 #define SHM_HUGETLB    04000
 
+#define shmid_ds shmid64_ds
+
 #include <stdio.h>
 #include <linux/ashmem.h>
 #include <sys/mman.h>
