@@ -101,6 +101,10 @@ LOCAL_CFLAGS += -DFIO_VERSION="\"fio-2.2.6\"" \
                 -Wno-unused-parameter \
                 -Wno-unused-variable \
 
+# Workaround until upstream copes with a glibc/bionic where <sys/types.h>
+# doesn't get you <sys/sysmacros.h> for free.
+LOCAL_CFLAGS += -include sys/sysmacros.h
+
 LOCAL_LDFLAGS += \
                 -rdynamic \
 
