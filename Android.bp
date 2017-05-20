@@ -44,13 +44,27 @@ cc_defaults {
         "-include sys/sysmacros.h",
     ],
 
+    multilib: {
+        lib32: {
+            cflags: [
+                "-DBITS_PER_LONG=32",
+                "-DCONFIG_32BIT",
+            ],
+        },
+        lib64: {
+            cflags: [
+                "-DBITS_PER_LONG=64",
+                "-DCONFIG_64BIT",
+            ],
+        },
+    },
     arch: {
-      arm: { cflags: ["-DBITS_PER_LONG=32", "-DCONFIG_32BIT"] },
-      arm64: { cflags: ["-DBITS_PER_LONG=64", "-DCONFIG_64BIT"] },
-      mips: { cflags: ["-DBITS_PER_LONG=32", "-DCONFIG_32BIT"] },
-      mips64: { cflags: ["-DBITS_PER_LONG=64", "-DCONFIG_64BIT"] },
-      x86: { cflags: ["-DBITS_PER_LONG=32", "-DCONFIG_32BIT"] },
-      x86_64: { cflags: ["-DBITS_PER_LONG=64", "-DCONFIG_64BIT"] },
+        mips: {
+            enabled: false,
+        },
+        mips64: {
+            enabled: false,
+        },
     },
 
     tidy_checks: ["-clang-analyzer*"],
