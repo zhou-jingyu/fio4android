@@ -12,6 +12,7 @@ cc_defaults {
         "-DCONFIG_LINUX_FALLOCATE",
         "-DCONFIG_LINUX_SPLICE",
         "-DCONFIG_LITTLE_ENDIAN",
+        "-DCONFIG_PSHARED",
         "-DCONFIG_RLIMIT_MEMLOCK",
         "-DCONFIG_RUSAGE_THREAD",
         "-DCONFIG_SCHED_IDLE",
