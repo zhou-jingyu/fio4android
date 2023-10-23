@@ -25,6 +25,7 @@ cc_defaults {
         "-DCONFIG_TCP_NODELAY",
         "-DCONFIG_TLS_THREAD",
         "-DCONFIG_ZLIB",
+        "-DCONFIG_LIBAIO",
         "-DFIO_HAVE_CGROUPS",
         "-DFIO_INC_DEBUG",
         "-DFIO_INTERNAL",
@@ -61,12 +62,6 @@ cc_defaults {
         },
     },
     arch: {
-        mips: {
-            enabled: false,
-        },
-        mips64: {
-            enabled: false,
-        },
     },
 
     tidy_checks: ["-clang-analyzer*"],
@@ -75,11 +70,12 @@ cc_defaults {
 cc_binary {
     name: "fio",
     defaults: ["fio_defaults"],
-    shared_libs: ["libdl"],
+    shared_libs: ["libdl", "libaio"],
     static_libs: [
         "libcutils",
         "libz",
     ],
+	//include_dirs: [ "external/libaio/src" ],
     srcs: [
         "backend.c",
         "blktrace.c",
@@ -127,6 +123,7 @@ cc_binary {
         "workqueue.c",
         "crc/*.c",
         "engines/cpu.c",
+        "engines/libaio.c",
         "engines/mmap.c",
         "engines/null.c",
         "engines/net.c",
